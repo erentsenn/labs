@@ -43,60 +43,57 @@ int main()
             maxx_index = j;
         }
     }
-    printf("max = %f \n", maxx);
+    printf("max = %f index =%d\n", maxx, maxx_index);
 
-    //delete negative
-    for (int k = 0; k < n; k++) {
-        if ((k < maxx_index && R[k] > 0) || (k >= maxx_index)) {
-            for (int j = k; j < n; j++) {
-                R[j + 1] = R[j];
+    //delete negative before maxx_index
+    int count = 0;
+    int k = 0;
+    while (k < n)
+    {
+        if (k < maxx_index && R[k] < 0) {
+            for (int j = k*1; j < n - count; j++) {
+                R[j] = R[j + 1];
             }
+            count = count + 1;
+            k = k - 1;
         }
+        k = k + 1;
     }
-    if (new_index == n)
-    {
-        printf("There are no elements to delete \n");
-    }
-    else
-    {
-        printf("Array new_r of %d elements \n", new_index);
-        for (int i = 0; i < new_index; i++)
+    //got array[n-count]
+    printf("Array r of %d elements\n", n - count);
+    for (int i = 0; i < n - count; i++)
         {
-            printf("%3d %1.6f\n", i, new_R[i]);
+        printf("%3d %1.6f\n", i, R[i]);
         }
-    }
-
-
-    if (new_index == 0) {
+    if (n - count == 0) {
         printf("The array has been completely deleted\n");
         printf("Task 3\n");
         printf("The arithmetic mean was not revealed\n");
 
     }
     else {
-        printf("new index %d \n", new_index);
 
         // 3 task
         int last_positive_ind = -1;
         int last_maxx = -3;
-        for (int d = 0; d < new_index; d++)
+        for (int d = 0; d < n - count; d++)
         {
-            if (new_R[d] >= last_maxx)
+            if (R[d] >= R[last_positive_ind])
             {
                 last_positive_ind = d;
-                last_maxx = new_R[d];
             }
         }
-        printf("last positive maxx = %d %f \n", last_positive_ind, new_R[last_positive_ind]);
+        printf("last positive maxx = %d %f \n", last_positive_ind, R[last_positive_ind]);
         if (last_positive_ind == -1)
             printf("There are no positive elements\n");
         else
         {
-            int smm = 0;
-            for (int m = last_positive_ind; m < new_index; m++) {
-                smm += new_R[m];
+            float smm = 0;
+            for (int m = last_positive_ind + 1; m < n - count; m++) {
+                smm = R[m] + smm;
             }
-            printf("avg = %f \n", smm / (new_index - last_positive_ind));
+            printf("avg = %f \n", smm / ((n - count) - last_positive_ind) - 1);
         }
     }
+    
 }
