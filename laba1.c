@@ -15,6 +15,7 @@ int main()
     printf("Task 1\n");
     // Input variables
     printf("Enter the length of the array r from 1 to %d: ", lmax);
+    scanf("%d",&n);
     printf("\nEnter the float x: ");
     scanf("%f", &x);
     printf("\nEnter the float h: ");
@@ -46,8 +47,7 @@ int main()
         }
     }
     printf("max = %f index =%d\n", maxx, maxx_index);
-
-    //delete negative before maxx_index
+    //delete negative elements
     int count = 0;
     int k = 0;
     while (k < n)
@@ -64,9 +64,9 @@ int main()
     //got array[n-count]
     printf("Array r of %d elements\n", n - count);
     for (int i = 0; i < n - count; i++)
-        {
+    {
         printf("%3d %1.6f\n", i, R[i]);
-        }
+    }
     if (n - count == 0) {
         printf("The array has been completely deleted\n");
         printf("Task 3\n");
@@ -94,8 +94,7 @@ int main()
             for (int m = last_positive_ind + 1; m < n - count; m++) {
                 smm = R[m] + smm;
             }
-            printf("avg = %f \n", smm/(n - count - last_positive_ind - 1));
+            printf("avg = %f \n", smm / (n - count - last_positive_ind - 1));
         }
     }
-    
 }
