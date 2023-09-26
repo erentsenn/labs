@@ -70,17 +70,15 @@ int main()
         }
     }
     // 3 task
-    int last_positive_ind = -1;  
-    int last_maxx = -3;   
-    for (int d = 0; d < n - count; d++)
+    int last_positive_ind = 0;  
+    for (int d = count; d < n; d++)
     {           
-        if (R[d] >= R[last_positive_ind])           
+        if (R[d] >= R[last_positive_ind] && R[d] > 0)
         {             
             last_positive_ind = d;           
         }     
     } 
-    printf("last positive maximum = %f, index = %d \n", R[last_positive_ind], last_positive_ind);
-    if (last_positive_ind == -1 || (n - last_positive_ind - 1) == 0)
+    if ((last_positive_ind == 0 && R[last_positive_ind] < 0) || (n - last_positive_ind - 1) == 0)
         printf("The arithmetic mean was not revealed\n");
     else
     {    
