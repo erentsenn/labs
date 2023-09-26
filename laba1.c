@@ -62,39 +62,37 @@ int main()
         k = k + 1;
     }
     //got array[n-count]
-    printf("Array r of %d elements\n", n - count);
-    for (int i = 0; i < n - count; i++)
+    if (count == 0)
+        printf("There are no elements satisfying the condition \n");
+    else
     {
-        printf("%3d %1.6f\n", i, R[i]);
+        printf("Array r of %d elements\n", n - count);
+        for (int i = 0; i < n - count; i++)
+        {
+            printf("%3d %1.6f\n", i, R[i]);
+        }
     }
-    if (n - count == 0) {
-        printf("The array has been completely deleted\n");
-        printf("Task 3\n");
+    // 3 task
+    int last_positive_ind = -1;  
+    int last_maxx = -3;   
+    for (int d = 0; d < n - count; d++)
+    {           
+        if (R[d] >= R[last_positive_ind])           
+        {             
+            last_positive_ind = d;           
+        }     
+    } 
+    printf("last positive maximum = %d, index = %f \n", last_positive_ind, R[last_positive_ind]);
+    if (last_positive_ind == -1 || (n - count - last_positive_ind - 1) == 0)
         printf("The arithmetic mean was not revealed\n");
-
-    }
-    else {
-
-        // 3 task
-        int last_positive_ind = -1;
-        int last_maxx = -3;
-        for (int d = 0; d < n - count; d++)
-        {
-            if (R[d] >= R[last_positive_ind])
-            {
-                last_positive_ind = d;
-            }
+    else
+    {    
+        float smm = 0; 
+        for (int m = last_positive_ind + 1; m < n - count; m++) {
+                
+            smm = R[m] + smm;
+           
         }
-        printf("last positive maxx = %d %f \n", last_positive_ind, R[last_positive_ind]);
-        if (last_positive_ind == -1)
-            printf("There are no positive elements\n");
-        else
-        {
-            float smm = 0;
-            for (int m = last_positive_ind + 1; m < n - count; m++) {
-                smm = R[m] + smm;
-            }
-            printf("avg = %f \n", smm / (n - count - last_positive_ind - 1));
-        }
+        printf("avg = %f \n", smm / (n - count - last_positive_ind - 1));
     }
 }
