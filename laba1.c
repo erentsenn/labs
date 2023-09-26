@@ -49,17 +49,14 @@ int main()
     printf("max = %f index =%d\n", maxx, maxx_index);
     //delete negative elements
     int count = 0;
-    int k = 0;
-    while (k < n)
+    for (int k = 0; k < n; k++)
     {
         if (k < maxx_index && R[k] < 0) {
-            for (int j = k; j < n - count; j++) {
-                R[j] = R[j + 1];
+            for (int j = k; j > count - 1; j--) {
+                R[j] = R[j - 1];
             }
             count = count + 1;
-            k = k - 1;
         }
-        k = k + 1;
     }
     //got array[n-count]
     if (count == 0)
@@ -67,9 +64,9 @@ int main()
     else
     {
         printf("Array r of %d elements\n", n - count);
-        for (int i = 0; i < n - count; i++)
+        for (int i = count; i < n; i++)
         {
-            printf("%3d %1.6f\n", i, R[i]);
+            printf("%1.6f\n", R[i]);
         }
     }
     // 3 task
@@ -82,8 +79,8 @@ int main()
             last_positive_ind = d;           
         }     
     } 
-    printf("last positive maximum = %d, index = %f \n", last_positive_ind, R[last_positive_ind]);
-    if (last_positive_ind == -1 || (n - count - last_positive_ind - 1) == 0)
+    printf("last positive maximum = %f, index = %d \n", R[last_positive_ind], last_positive_ind);
+    if (last_positive_ind == -1 || (n - last_positive_ind - 1) == 0)
         printf("The arithmetic mean was not revealed\n");
     else
     {    
@@ -93,6 +90,6 @@ int main()
             smm = R[m] + smm;
            
         }
-        printf("avg = %f \n", smm / (n - count - last_positive_ind - 1));
+        printf("avg = %f \n", smm / (n - last_positive_ind - 1));
     }
 }
