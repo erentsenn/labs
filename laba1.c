@@ -11,15 +11,16 @@ int main()
     float h;
     float a;
     int n;
+    printf("Laboratory work N. 1\n");
+    printf("Task 1\n");
     // Input variables
+    printf("Enter the length of the array r from 1 to %d: ", lmax);
     printf("\nEnter the float x: ");
     scanf("%f", &x);
     printf("\nEnter the float h: ");
     scanf("%f", &h);
     printf("\nEnter the float a: ");
     scanf("%f", &a);
-    printf("\nEnter the int n: ");
-    scanf("%d", &n);
     // declare massiv
     double R[lmax];
     for (int i = 0; i < n; i++) {
@@ -34,6 +35,7 @@ int main()
 
     // 2 task
     // find max
+    printf("Task 2\n");
     float maxx = -3;
     int maxx_index = 0;
     for (int j = 0; j < n; j++) {
@@ -51,7 +53,7 @@ int main()
     while (k < n)
     {
         if (k < maxx_index && R[k] < 0) {
-            for (int j = k*1; j < n - count; j++) {
+            for (int j = k; j < n - count; j++) {
                 R[j] = R[j + 1];
             }
             count = count + 1;
@@ -92,7 +94,7 @@ int main()
             for (int m = last_positive_ind + 1; m < n - count; m++) {
                 smm = R[m] + smm;
             }
-            printf("avg = %f \n", smm / ((n - count) - last_positive_ind) - 1);
+            printf("avg = %f \n", smm/(n - count - last_positive_ind - 1));
         }
     }
     
