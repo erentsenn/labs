@@ -28,19 +28,46 @@ int main()
 	}
 	int a;
 	int s;
+	int odd;
+	int even;
+	int p = 0;
 	for (int i = 0; i < k; i++)
 	{
+		s = 0;
+		even = 0;
+		odd = 0;
 		a = X[i];
 		while (a >= 1)
 		{
+			if (s % 2 == 0)
+			{
+				odd += a % 10;
+			}
+			else
+			{
+				even += a % 10;
+			}
 			a = a / 10; //"откидывание" последней цифры числа для поиска количества цифр
 			s += 1;//количество цифр в числе
 		}
+		if (odd == even)
+		{
+			Q[p] = X[i];
+			p++;
+		}
 	}
-	printf("Arr has been changed:\n");
-	for (int i = 0; i < k; i++)
+	if (p > 0)
 	{
-		printf("%d\n", X[i]);
+		printf("Array Q: \n");
+		for (int j = 0; j < p; j++)
+		{
+			printf("%d ", Q[j]);
+		}
 	}
+	else
+	{
+		printf("Array Q is empty");
+	}
+	
 	return 0;
 }
