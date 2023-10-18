@@ -41,23 +41,29 @@ int main()
 		printf("\n");
 	}
 	int tmp = 0;
+	int flag = 0;
 	for (int i = 0; i < n; i++)
 	{
+		flag = 0;
 		for (int j = 0; j < m; j++)
 		{
 			if (Z[i][j] == 0)
 			{
-				for (int k = i; k < n; k++)
-				{
-					for (int v = 0; v < m; v++)
-					{
-						Z[k][v] = Z[k + 1][v];
-					}
-				}
-				i -= 1;
-				tmp++;	
-				break;
+				flag = 1;
 			}
+		}
+		if (flag == 0)
+		{
+			for (int k = i; k < n; k++)
+			{
+				for (int v = 0; v < m; v++)
+				{
+					Z[k][v] = Z[k + 1][v];
+				}
+			}
+			i -= 1;
+			tmp++;	
+			break;
 		}
 	}
 	if (tmp >= n)
