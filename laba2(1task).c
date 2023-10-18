@@ -68,16 +68,16 @@ int main()
 		{
 			if (Z[j][i] < 0)
 			{
-				printf("first negative - %d", Z[j][i]);
+				printf("first negative = %d \n", Z[j][i]);
 				for (int t = j + 1; t < m; t++)
 				{
+					printf("next el = %d \n", Z[t][i]);
 					flag2 = 0;
-					for (int v = 0; i < k; i++)
+					for (int v = 0; v < k; v++)
 					{
 						if (Z[t][i] == F[v])
 						{
 							flag2 = 1;
-							break;
 						}
 					}
 					if (flag2 == 0)
@@ -85,15 +85,24 @@ int main()
 						Q[p] = Z[t][i];
 						p++;
 					}
+					printf("flag2 = %d \n", flag2);
 				}
 				break;
 			}
 		}
 
 	}
-	for (int a = 0; a < p; a++)
+	if (p == 0)
 	{
-		printf("%d ", Q[a]);
+		printf("Array Q is empty");
+	}
+	else
+	{
+		printf("Array Q: \n");
+		for (int a = 0; a < p; a++)
+		{
+			printf("%d ", Q[a]);
+		}
 	}
 	return 0;
 }
